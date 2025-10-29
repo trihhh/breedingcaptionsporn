@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Captions</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+    }
+
+    header {
+      background: #333;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .album-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .album {
+      background: white;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin: 15px;
+      width: 250px;
+      overflow: hidden;
+      transition: 0.3s;
+    }
+
+    .album:hover {
+      transform: scale(1.05);
+    }
+
+    .album img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .album h2 {
+      margin: 10px;
+      text-align: center;
+    }
+
+    .album a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .gallery img {
+      width: 200px;
+      height: 150px;
+      object-fit: cover;
+      margin: 10px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .back {
+      display: block;
+      margin: 20px;
+      text-align: center;
+    }
+
+    .back a {
+      color: #333;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>My Photo Albums</h1>
+</header>
+
+<!-- ALBUM LIST PAGE -->
+<div class="album-container" id="albumList">
+  <div class="album">
+    <a href="#album1">
+      <img src="images/nature1.jpg" alt="Nature Album">
+      <h2>Nature Album</h2>
+    </a>
+  </div>
+
+  <div class="album">
+    <a href="#album2">
+      <img src="images/city1.jpg" alt="City Album">
+      <h2>City Album</h2>
+    </a>
+  </div>
+
+  <div class="album">
+    <a href="#album3">
+      <img src="images/family1.jpg" alt="Family Album">
+      <h2>Family Album</h2>
+    </a>
+  </div>
+</div>
+
+<!-- ALBUM PAGES -->
+<div id="album1" class="gallery" style="display:none;">
+  <h2>Nature Album</h2>
+  <img src="images/nature1.jpg" alt="">
+  <img src="images/nature2.jpg" alt="">
+  <img src="images/nature3.jpg" alt="">
+  <div class="back"><a href="#">← Back to Albums</a></div>
+</div>
+
+<div id="album2" class="gallery" style="display:none;">
+  <h2>City Album</h2>
+  <img src="images/city1.jpg" alt="">
+  <img src="images/city2.jpg" alt="">
+  <img src="images/city3.jpg" alt="">
+  <div class="back"><a href="#">← Back to Albums</a></div>
+</div>
+
+<div id="album3" class="gallery" style="display:none;">
+  <h2>Family Album</h2>
+  <img src="images/family1.jpg" alt="">
+  <img src="images/family2.jpg" alt="">
+  <img src="images/family3.jpg" alt="">
+  <div class="back"><a href="#">← Back to Albums</a></div>
+</div>
+
+<script>
+  // Simple JavaScript to switch between album list and album view
+  const albumList = document.getElementById('albumList');
+  const galleries = document.querySelectorAll('.gallery');
+
+  function showAlbum(id) {
+    albumList.style.display = 'none';
+    galleries.forEach(g => g.style.display = 'none');
+    document.querySelector(id).style.display = 'block';
+  }
+
+  function showAll() {
+    albumList.style.display = 'flex';
+    galleries.forEach(g => g.style.display = 'none');
+  }
+
+  document.querySelectorAll('.album a').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      showAlbum(link.getAttribute('href'));
+    });
+  });
+
+  document.querySelectorAll('.back a').forEach(back => {
+    back.addEventListener('click', e => {
+      e.preventDefault();
+      showAll();
+    });
+  });
+</script>
+
+</body>
+</html>
